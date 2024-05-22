@@ -13,17 +13,19 @@ import { Set } from '@redwoodjs/router/dist/Set'
 // on the types here
 import { Router } from '@redwoodjs/vite/Router'
 
-import NavigationLayout from 'src/layouts/NavigationLayout'
+import AppLayout from 'src/layouts/AppLayout'
 import NotFoundPage from 'src/pages/NotFoundPage'
 
 const Routes = ({ location }: { location?: any }) => {
   return (
     <Router location={location}>
-      <Set wrap={NavigationLayout}>
+      <Route path="/photos/{id:Int}" page={PhotoPage} name="photo" />
+
+      <Set wrap={AppLayout}>
         <Route path="/" page={HomePage} name="home" />
-        <Route path="/about" page={AboutPage} name="about" />
+        <Route path="/photos/{id:Int}/edit" page={EditPhotoPage} name="edit" />
+        <Route notfound page={NotFoundPage} />
       </Set>
-      <Route notfound page={NotFoundPage} />
     </Router>
   )
 }
