@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
+import { useOgImage } from '@redwoodjs/ogimage-gen/hooks'
 import { namedRoutes as routes } from '@redwoodjs/router/dist/namedRoutes'
 import { Metadata } from '@redwoodjs/web'
 
-const DEFAULT_ADJUSTMENTS = {
+export const DEFAULT_ADJUSTMENTS = {
   brightness: 1,
   contrast: 1,
   'hue-rotate': 0,
@@ -31,6 +32,7 @@ const PhotoSuccess = ({ photo }) => {
   const [showImage, setShowImage] = useState(false)
   const [showMetadata, setShowMetadata] = useState(false)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
+  const { ogProps } = useOgImage()
 
   // watch for resize so we can adjust the size of some things
   useEffect(() => {
@@ -57,6 +59,7 @@ const PhotoSuccess = ({ photo }) => {
       <Metadata
         title={`${photo.filename}`}
         description={`View ${photo.filename}`}
+        og={ogProps}
       />
 
       <img
