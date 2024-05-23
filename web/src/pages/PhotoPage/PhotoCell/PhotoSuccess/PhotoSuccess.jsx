@@ -32,7 +32,7 @@ const PhotoSuccess = ({ photo }) => {
   const [showImage, setShowImage] = useState(false)
   const [showMetadata, setShowMetadata] = useState(false)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-  const { ogProps } = useOgImage()
+  const { ogProps } = useOgImage({ searchParams: params })
 
   // watch for resize so we can adjust the size of some things
   useEffect(() => {
